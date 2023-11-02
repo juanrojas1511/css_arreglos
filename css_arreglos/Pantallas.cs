@@ -52,8 +52,6 @@ namespace css_arreglos
             Console.WriteLine("================================");
             Console.WriteLine("La nota mayor");
             Console.WriteLine("================================");
-            string notamayor=Operaciones.getTextoPantalla("La nota mayor es: ");
- 
             if (contador == 0)
             {
                 Console.WriteLine("No hay notas registradas.");
