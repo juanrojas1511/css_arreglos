@@ -53,14 +53,37 @@ namespace css_arreglos
             Console.WriteLine("La nota mayor");
             Console.WriteLine("================================");
             string notamayor=Operaciones.getTextoPantalla("La nota mayor es: ");
+ 
+            if (contador == 0)
+            {
+                Console.WriteLine("No hay notas registradas.");
+                return 0; 
+            }
+
+         
+            float max_not = not[0];
+            for (int i = 1; i < contador; i++)
+            {
+                if (not[i] > max_not)
+                {
+                    max_not = not[i];
+                }
+            }
+            Console.WriteLine("La nota mayor es: "+max_not);
 
             for (int i =0; i < contador; i++)
             {
-                Console.WriteLine(i + "" + not[i]);
+                if (not[i] == max_not)
+                {
+                    Console.Write($"[{not[i]}] ");
+                }
+                else
+                {
+                    Console.Write(not[i]  + " ");
+                }
             }
+            Console.WriteLine();
             Console.WriteLine("================================");
-
-
             Console.WriteLine("1: Regresar");
             int opcion = Operaciones.getEntero("Ingresa una opción: ");
             if (opcion == 1) return 0;
@@ -71,9 +94,35 @@ namespace css_arreglos
             Console.WriteLine("================================");
             Console.WriteLine("La nota menor");
             Console.WriteLine("================================");
-            Console.WriteLine("La nota menor es: ");
-            Console.WriteLine("================================");
+          if (contador == 0)
+            {
+                Console.WriteLine("No hay notas registradas.");
+                return 0; 
+            }
 
+            float min_not = not[0];
+            for (int i = 1; i < contador; i++)
+            {
+                if (not[i] < min_not)
+                {
+                    min_not = not[i];
+                }
+            }
+            Console.WriteLine("La nota menor es: " + min_not);
+
+            for (int i = 0; i < contador; i++)
+            {
+                if (not[i] == min_not)
+                {
+                    Console.Write($"[{not[i]}]");
+                }
+                else
+                {
+                    Console.Write(not[i]  + " ");
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("================================");
             Console.WriteLine("1: Regresar");
             int opcion = Operaciones.getEntero("Ingresa una opción: ");
             if (opcion == 1) return 0;
@@ -81,15 +130,39 @@ namespace css_arreglos
         }
         public static int busc_nota()
         {
+           Console.WriteLine("================================");
+            Console.WriteLine("Buscar nota");
             Console.WriteLine("================================");
-            Console.WriteLine("La nota menor");
-            Console.WriteLine("================================");
-            Console.WriteLine("Ingrese la nota a buscar:");
-            Console.WriteLine("La nota está en la posición:");
+            float notaBuscada=Operaciones.getDecimal("Ingrese la nota a buscar:");
+            bool encontrar = false;
 
+         
+            for (int i = 0; i < contador; i++)
+            {
+                if (not[i] ==notaBuscada)
+                {
+                    if (!encontrar)
+                    {
+                        Console.Write("La nota está en la posición:");
+                        encontrar = true;
+                    }
+                    Console.Write($" {i} ");
+                }
+            }
+            Console.WriteLine();
 
-
-
+            for (int i = 0; i < contador; i++)
+            {
+              
+                if (not[i] == notaBuscada)
+                {
+                    Console.WriteLine(i+"->"+$"[{not[i]}]");
+                }
+                else
+                {
+                    Console.WriteLine(i+"->"+not[i]);
+                }
+            }
             Console.WriteLine("================================");
             Console.WriteLine("1: Regresar");
             int opcion = Operaciones.getEntero("Ingresa una opción: ");
@@ -101,13 +174,35 @@ namespace css_arreglos
             Console.WriteLine("================================");
             Console.WriteLine("Modificar nota");
             Console.WriteLine("================================");
-            Console.WriteLine("Ingrese la posición:");
-            Console.WriteLine("Ingrese el nuevo valor:");
+            int posicion=Operaciones.getEntero("Ingrese la posición:");
+            float nuevo_valor=Operaciones.getDecimal("Ingrese el nuevo valor:");
             Console.WriteLine("================================");
             Console.WriteLine("Antes:");
-
-            Console.WriteLine("Después:");
-
+            for (int i = 0; i < contador; i++)
+            {
+                if (i == posicion)
+                {
+                    Console.Write($"[{not[i]}] ");
+                }
+                else
+                {
+                    Console.Write(not[i] + " ");
+                }
+            }
+            not[posicion] = nuevo_valor;
+            Console.WriteLine("\nDespués:");
+            for (int i = 0; i < contador; i++)
+            {
+                if (i == posicion)
+                {
+                    Console.Write($"[{not[i]}] ");
+                }
+                else
+                {
+                    Console.Write(not[i] + " ");
+                }
+            }
+            Console.WriteLine();
             Console.WriteLine("================================");
             Console.WriteLine("1: Regresar");
             int opcion = Operaciones.getEntero("Ingresa una opción: ");
@@ -120,9 +215,21 @@ namespace css_arreglos
             Console.WriteLine("Notas Registradas");
             Console.WriteLine("================================");
             Console.WriteLine("Notas actuales");
-
-            Console.WriteLine("Siguiente posición será:");
-
+            for (int i = 0; i < contador; i++)
+            {
+                if (i != contador - 1)
+                {
+                    Console.Write(not[i] + " - ");
+                }
+                else
+                {
+                    Console.Write(not[i]);
+                }
+            }
+            Console.WriteLine();
+            int siguientePosicion = contador;
+            Console.WriteLine("\nSiguiente posición será: " + siguientePosicion);
+            Console.WriteLine();
             Console.WriteLine("================================");
             Console.WriteLine("1:Regresar");
             int opcion = Operaciones.getEntero("Ingresa una opción: ");
